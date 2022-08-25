@@ -1,3 +1,5 @@
+const Joi = require('joi');
+
 const validateLogin = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password || email.length === 0 || password.length === 0) {
@@ -8,6 +10,23 @@ const validateLogin = (req, res, next) => {
   next();
 };
 
+const validateNewUser = (req, res, next) => {
+  const schema = Joi.object({
+    displayName: Joi.string().min(8).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+    image: Joi.string(),
+  });
+  const { error } = schema.validate(req.body);
+  if (error) {
+    const err = error;
+    err.status = 400;
+    throw err;
+  }
+  next();
+};
+
 module.exports = {
   validateLogin,
+  validateNewUser,
 };

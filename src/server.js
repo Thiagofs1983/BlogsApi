@@ -14,6 +14,8 @@ app.get('/', (_request, response) => {
 
 app.post('/login', validate.validateLogin, UserController.login);
 
+app.post('/user', validate.validateNewUser, UserController.create);
+
 app.use((err, req, res, _next) => {
   const { status, message } = err;
   res.status(status).json({ message });
