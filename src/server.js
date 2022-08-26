@@ -2,6 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 const app = require('./api');
 const UserController = require('./controllers/UserController');
+const CategoryController = require('./controllers/CategoryController');
 const validate = require('./middlewares/validate');
 const tokenValidation = require('./middlewares/auth');
 
@@ -20,6 +21,10 @@ app.post('/user', validate.validateNewUser, UserController.create);
 app.get('/user', tokenValidation, UserController.getUser);
 
 app.get('/user/:id', tokenValidation, UserController.getUserById);
+
+app.post(
+  '/categories', tokenValidation, validate.validateNewCategory, CategoryController.createCategory,
+);
 
 app.use((err, req, res, _next) => {
   const { status, message } = err;
