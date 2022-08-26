@@ -3,6 +3,7 @@ require('express-async-errors');
 const app = require('./api');
 const UserController = require('./controllers/UserController');
 const CategoryController = require('./controllers/CategoryController');
+const BlogPostService = require('./controllers/BlogPostController');
 const validate = require('./middlewares/validate');
 const tokenValidation = require('./middlewares/auth');
 
@@ -27,6 +28,8 @@ app.post(
 );
 
 app.get('/categories', tokenValidation, CategoryController.getAll);
+
+app.get('/post', tokenValidation, BlogPostService.getAllBlogPost);
 
 app.use((err, req, res, _next) => {
   const { status, message } = err;
