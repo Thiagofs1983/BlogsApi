@@ -31,6 +31,8 @@ app.get('/categories', tokenValidation, CategoryController.getAll);
 
 app.get('/post', tokenValidation, BlogPostService.getAllBlogPost);
 
+app.get('/post/:id', tokenValidation, BlogPostService.getPostById);
+
 app.use((err, req, res, _next) => {
   const { status, message } = err;
   res.status(status).json({ message });
