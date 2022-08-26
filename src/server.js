@@ -33,9 +33,12 @@ app.get('/post', tokenValidation, BlogPostService.getAllBlogPost);
 
 app.get('/post/:id', tokenValidation, BlogPostService.getPostById);
 
+app.post('/post', tokenValidation, validate.validateCreatePost, BlogPostService.createPost);
+
 app.use((err, req, res, _next) => {
   const { status, message } = err;
-  res.status(status).json({ message });
+  console.error(err);
+  res.status(status || 500).json({ message });
 });
 
 app.listen(port, () => console.log('ouvindo porta', port));

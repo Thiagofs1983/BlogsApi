@@ -39,8 +39,25 @@ const validateNewCategory = (req, res, next) => {
   next();
 };
 
+const validateCreatePost = (req, res, next) => {
+  const schema = Joi.object({
+    title: Joi.string().min(1).required(),
+    content: Joi.string().min(1).required(),
+    categoryIds: Joi.array().items(Joi.number().required()).required(),
+  });
+  const { error } = schema.validate(req.body);
+  if (error) {
+    const err = error;
+    err.status = 400;
+    err.message = 'Some required fields are missing';
+    throw err;
+  }
+  next();
+};
+
 module.exports = {
   validateLogin,
   validateNewUser,
   validateNewCategory,
+  validateCreatePost,
 };

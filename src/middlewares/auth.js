@@ -8,7 +8,8 @@ const tokenValidation = (req, res, next) => {
     res.status(401).json({ message: 'Token not found' });
   }
   try {
-    jwt.verify(authorization, JWT_SECRET);
+    const { payload } = jwt.verify(authorization, JWT_SECRET);
+    req.user = payload;
     next();
   } catch (error) {
     res.status(401).json({ message: 'Expired or invalid token' });
