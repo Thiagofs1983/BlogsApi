@@ -26,6 +26,8 @@ app.post(
   '/categories', tokenValidation, validate.validateNewCategory, CategoryController.createCategory,
 );
 
+app.get('/categories', tokenValidation, CategoryController.getAll);
+
 app.use((err, req, res, _next) => {
   const { status, message } = err;
   res.status(status).json({ message });
