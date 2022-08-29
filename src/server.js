@@ -3,7 +3,7 @@ require('express-async-errors');
 const app = require('./api');
 const UserController = require('./controllers/UserController');
 const CategoryController = require('./controllers/CategoryController');
-const BlogPostService = require('./controllers/BlogPostController');
+const BlogPostController = require('./controllers/BlogPostController');
 const validate = require('./middlewares/validate');
 const tokenValidation = require('./middlewares/auth');
 
@@ -29,13 +29,15 @@ app.post(
 
 app.get('/categories', tokenValidation, CategoryController.getAll);
 
-app.get('/post', tokenValidation, BlogPostService.getAllBlogPost);
+app.get('/post', tokenValidation, BlogPostController.getAllBlogPost);
 
-app.get('/post/:id', tokenValidation, BlogPostService.getPostById);
+app.get('/post/:id', tokenValidation, BlogPostController.getPostById);
 
-app.post('/post', tokenValidation, validate.validateCreatePost, BlogPostService.createPost);
+app.post('/post', tokenValidation, validate.validateCreatePost, BlogPostController.createPost);
 
-app.put('/post/:id', tokenValidation, validate.validateUpdatePost, BlogPostService.updatePost);
+app.put('/post/:id', tokenValidation, validate.validateUpdatePost, BlogPostController.updatePost);
+
+app.delete('/post/:id', tokenValidation, BlogPostController.removePost);
 
 app.use((err, req, res, _next) => {
   const { status, message } = err;

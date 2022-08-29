@@ -63,9 +63,18 @@ const updatePost = async (body, idPost, email) => {
   return update;
 };
 
+const removePost = async (postId, email) => {
+  const { id } = await User.findOne({ where: { email } });
+  const post = await BlogPost.findByPk(postId);
+  if (!post) return null;
+  const remove = await BlogPost.destroy({ where: { id: postId, userId: id } });
+  return remove;
+};
+
 module.exports = {
   getAllBlogPost,
   getPostById,
   createPost,
   updatePost,
+  removePost,
 };
