@@ -30,10 +30,9 @@ const getPostById = async (id) => {
 };
 
 const createPost = async (body, emailUser) => {
+  const { title, content, categoryIds } = body;
+  const { id } = await User.findOne({ where: { email: emailUser } });
   const transactionResult = await sequelize.transaction(async (transaction) => {
-    const { title, content, categoryIds } = body;
-    const { id } = await User.findOne({ where: { email: emailUser } });
-    
     const result = await BlogPost.create({ title, content, userId: id }, { transaction });
     
     const verifyCategory = await Promise.all(categoryIds.map(async (cat) => {
@@ -46,15 +45,27 @@ const createPost = async (body, emailUser) => {
     }));
     
     if (verifyCategory.includes(null)) return null;
-    console.log(verifyCategory);
+    
     await PostCategory.bulkCreate(verifyCategory, { transaction });
     return result;
   });
   return transactionResult;
 };
 
+const updatePost = async (body, idPost, email) => {
+  const { id } = await User.findOne({ where: { email } });
+  const result = await BlogPost.update(body, { where: { id: idPost, userId: id } });
+  if (result[0] === 0) return null;
+  const update = await BlogPost.findByPk(idPost, { include: [
+    { model: User, as: 'user', attributes: { exclude: ['passowrd'] } },
+    { model: Category, as: 'categories' },
+  ] });
+  return update;
+};
+
 module.exports = {
   getAllBlogPost,
   getPostById,
   createPost,
+  updatePost,
 };

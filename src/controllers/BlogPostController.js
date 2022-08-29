@@ -20,8 +20,17 @@ const createPost = async (req, res) => {
   res.status(201).json(result);
 };
 
+const updatePost = async (req, res) => {
+  const { id } = req.params;
+  const email = req.user;
+  const result = await BlogPostService.updatePost(req.body, id, email);
+  if (!result) return res.status(401).json({ message: 'Unauthorized user' });
+  res.status(200).json(result);
+};
+
 module.exports = {
   getAllBlogPost,
   getPostById,
   createPost,
+  updatePost,
 };

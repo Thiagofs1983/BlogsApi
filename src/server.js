@@ -35,6 +35,8 @@ app.get('/post/:id', tokenValidation, BlogPostService.getPostById);
 
 app.post('/post', tokenValidation, validate.validateCreatePost, BlogPostService.createPost);
 
+app.put('/post/:id', tokenValidation, validate.validateUpdatePost, BlogPostService.updatePost);
+
 app.use((err, req, res, _next) => {
   const { status, message } = err;
   console.error(err);
