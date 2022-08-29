@@ -23,6 +23,8 @@ app.get('/user', tokenValidation, UserController.getUser);
 
 app.get('/user/:id', tokenValidation, UserController.getUserById);
 
+app.delete('/user/me', tokenValidation, UserController.removeUser);
+
 app.post(
   '/categories', tokenValidation, validate.validateNewCategory, CategoryController.createCategory,
 );
