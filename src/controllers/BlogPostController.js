@@ -37,10 +37,18 @@ const removePost = async (req, res) => {
   res.status(204).end();
 };
 
+const searchPost = async (req, res) => {
+  const { q } = req.query;
+  const result = await BlogPostService.searchPost(q);
+  console.log(result);
+  res.status(200).json(result);
+};
+
 module.exports = {
   getAllBlogPost,
   getPostById,
   createPost,
   updatePost,
   removePost,
+  searchPost,
 };

@@ -4,6 +4,8 @@ const config = require('../database/config/config');
 
 const sequelize = new Sequelize(config.development);
 
+const { Op } = Sequelize;
+
 const { BlogPost, User, Category, PostCategory } = require('../database/models');
 
 const getAllBlogPost = async () => {
@@ -71,10 +73,23 @@ const removePost = async (postId, email) => {
   return remove;
 };
 
+const searchPost = async (q) => {
+  const query = `%${q}%`;
+  const result = await BlogPost.findAll({
+    where: { [Op.or]: [{ title: { [Op.like]: query } }, { content: { [Op.like]: query } }] },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+  return result;
+};
+
 module.exports = {
   getAllBlogPost,
   getPostById,
   createPost,
   updatePost,
   removePost,
+  searchPost,
 };

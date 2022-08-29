@@ -31,6 +31,8 @@ app.post(
 
 app.get('/categories', tokenValidation, CategoryController.getAll);
 
+app.get('/post/search', tokenValidation, BlogPostController.searchPost);
+
 app.get('/post', tokenValidation, BlogPostController.getAllBlogPost);
 
 app.get('/post/:id', tokenValidation, BlogPostController.getPostById);
