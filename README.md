@@ -1,16 +1,38 @@
-# 🚧 README em construção 🚧
+# Projeto Blogs Api
 
-<!-- Olá, Tryber!
+# Contexto
+ Aplicação em Node.js usando o pacote sequelize para fazer um CRUD de posts para um Blog. A aplicação faz a relação entre tabelas e foi desenvolvida como RESTful. 
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+## Técnologias usadas
 
-É essencial que você preencha esse documento por conta própria, ok?
+Back-end:
+> Desenvolvido usando: NodeJS, Sequelize, ExpressJS, ES6, MYSQL, Joi
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+## Instalando Dependências
 
--->
+> Backend
+```bash
+git clone git@github.com:Thiagofs1983/BlogsApi.git
+cd sd-020-a-project-blogs-api 
+npm install
+``` 
+
+## Executando aplicação
+
+Para rodar a aplicação você vai precisar ter o [Docker](https://docs.docker.com/engine/install/ubuntu/) instalado usando os comandos no terminal:
+```bash
+docker-compose up -d --build
+docker exec -it blogs_api bash
+npm install
+```
+
+* Para rodar o back-end:
+
+```
+npm start
+```
+
+* Realizando Requisições:
+
+Para realizar as requisições, você pode usar a extensão [Thunder Client](https://www.thunderclient.com/) do VSCode ou pode usar os clientes HTTP [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/).
