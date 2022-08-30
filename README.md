@@ -6,7 +6,7 @@
 ## Técnologias usadas
 
 Back-end:
-> Desenvolvido usando: NodeJS, Sequelize, ExpressJS, ES6, MYSQL, Joi
+> Desenvolvido usando: NodeJS, Sequelize, ExpressJS, ES6, MYSQL, Joi, JWT
 
 
 ## Instalando Dependências
