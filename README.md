@@ -60,9 +60,9 @@ Caso haja sucesso, a requisição irá retornar um TOKEN, que será usado para f
 </details>
 
 <details>
-  <summary><strong> User </strong></summary></br>
+  <summary><strong> Usuários </strong></summary></br>
   
-  - Abaixo os seguintes endpoints para `User`:
+  - Abaixo os seguintes endpoints para as rotas `user`:
 
 | Método | Funcionalidade | URL |
 |---|---|---|
@@ -91,6 +91,26 @@ Para inserir um novo usuário, insira também na aba `Body` o seguinte json:
 | `DELETE` | Apaga o usuário logado do banco de dados | http://localhost:3000/user/me |
 
 *Obs.: É necessário que haja um TOKEN válido na chave `Authorization` da aba `Headers`*
+
+</details>
+
+<details>
+  <summary><strong> Categorias </strong></summary></br>
+  
+  - Abaixo os seguintes endpoints para as rotas `categories`
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `GET` | Exibe todas as categerias do banco de dados | http://localhost:3000/categories |
+| `POST` | Adiciona uma nova categoria a tabela no banco de dados | http://localhost:3000/categories |
+
+Para adicionar uma nova categoria, insira também na aba `Body` o seguinte json:
+```
+{
+  "name": "Typescript"
+}
+```
+*Obs.: É necessário que haja um TOKEN válido na chave `Authorization` da aba `Headers` e que o valor da chave `name` seja válido. Caso contrário, a requisição retornará um erro indicativo.*
 
 </details>
 
