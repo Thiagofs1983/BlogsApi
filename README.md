@@ -14,7 +14,7 @@ Back-end:
 > Backend
 ```bash
 git clone git@github.com:Thiagofs1983/BlogsApi.git
-cd sd-020-a-project-blogs-api 
+cd BlogsApi 
 npm install
 ``` 
 
