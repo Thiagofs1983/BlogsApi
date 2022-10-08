@@ -114,4 +114,54 @@ Para adicionar uma nova categoria, insira também na aba `Body` o seguinte json:
 
 </details>
 
+<details>
+  <summary><strong> Blog Posts </strong></summary></br>
+  
+  - Abaixo os seguintes endpoints para as rotas `post`
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `GET` | Exibe todos os blogs posts, usuário dono dele e as categorias | http://localhost:3000/post |
+| `GET` | Exibe o blog post, usuário dono dele e categoria correspondente ao id passado na URL | http://localhost:3000/post/1 |
+| `GET` | Exibe o blog post, usuário dono dele e categoria que tenha em seu ttulo ou conteúdo a query params passado na URL | http://localhost:3000/post/search?q=vamos |
+
+*Obs.: É necessário que haja um TOKEN válido na chave `Authorization` da aba `Headers` e que o id do blog post seja válido. Caso contrário, a requisição retornará um erro indicativo.*
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `POST` | Adiciona um novo blog post e o vincula às categorias no banco de dados | http://localhost:3000/post |
+
+Para inserir um novo blog post, insira também na aba `Body` o seguinte json:
+
+```
+{
+  "title": "Latest updates, August 1st",
+  "content": "The whole text for the blog post goes here in this key",
+  "categoryIds": [1, 2]
+}
+```
+*Obs.: É necessário que haja um TOKEN válido na chave `Authorization` da aba `Headers` e que os valores das chaves `title`, `content` e `categoryIds` sejam válidos. Caso contrário, a requisição retornará um erro indicativo.*
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `PUT` | Altera um post do banco de dados, se ele existir | http://localhost:3000/post/1 |
+
+Para editar um blog post, insira também na aba `Body` o seguinte json:
+
+```
+{
+  "title": "Latest updates, August 1st",
+  "content": "The whole text for the blog post goes here in this key"
+}
+```
+*Obs.: É necessário que haja um TOKEN válido na chave `Authorization` da aba `Headers` e que os valores das chaves `title` e `content` e o id informado na URL sejam válidos. Caso contrário, a requisição retornará um erro indicativo.*
+
+| Método | Funcionalidade | URL |
+|---|---|---|
+| `DELETE` | Apaga um blog post baseado no id do banco de dados se ele existir | http://localhost:3000/post/1 |
+
+*Obs.: É necessário que haja um TOKEN válido na chave `Authorization` da aba `Headers`, que o `ìd` seja válido e que o blog post seja do usuário que está logado. Caso contrário, a requisição retornará um erro indicativo.*
+
+</details>
+
 [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin" height='30'>](https://www.linkedin.com/in/fsthiago/)
